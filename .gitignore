@@ -1,0 +1,11 @@
+node_modules
+npm-debug.log
+.tmp
+.idea
+dist
+*.log
+.idea
+coverage
+.nyc_output
+.vscode
+config/secrets.js
