@@ -6,3 +6,11 @@ export const isClient = typeof window !== 'undefined';
 
 export const listenPort = isDebug ? 3000 : process.env.PORT;
 export const apiEndpoint = isDebug ? `http://localhost:${listenPort}` : '';
+
+export default {
+  isProduction,
+  isDebug,
+  isClient,
+  listenPort,
+  apiEndpoint
+};

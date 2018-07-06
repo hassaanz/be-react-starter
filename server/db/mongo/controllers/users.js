@@ -6,7 +6,7 @@ import User from '../models/user';
  */
 export function login(req, res, next) {
   // Do email and password validation for the server
-  passport.authenticate('local', (authErr, user, info) => {
+  passport.authenticate('local', (authErr, user) => {
     if (authErr) return next(authErr);
     if (!user) {
       return res.sendStatus(401);

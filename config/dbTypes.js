@@ -3,3 +3,7 @@ export const DB_TYPES = {
   POSTGRES: 'POSTGRES',
   NONE: 'NONE'
 };
+
+export default {
+  DB_TYPES
+};

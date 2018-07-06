@@ -1,9 +1,12 @@
-import Logger from './lib/Logger';
 import Server from './server';
+
 class App {
+  constructor() {
+    this.server = new Server();
+  }
+
   start() {
-    new Logger().log('App Started!');
-    new Server().start();
+    this.server.start();
   }
 }
 

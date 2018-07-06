@@ -4,4 +4,4 @@ export { users };
 
 export default {
   users
-}
+};

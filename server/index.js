@@ -10,8 +10,12 @@ import initRoutes from './init/routes';
 
 
 class Server {
+  constructor() {
+    this.app = express();
+  }
+
   start() {
-    const app = express();
+    const { app } = this;
 
     /*
      * Database-specific setup
@@ -62,4 +66,4 @@ class Server {
 }
 
 
-export default Server
+export default Server;
