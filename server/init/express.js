@@ -11,7 +11,7 @@ import webpackDevConfig from '../../webpack/webpack.dev.config';
 import unsupportedMessage from '../db/unsupportedMessage';
 import { sessionSecret } from '../../config/secrets';
 import { DB_TYPE, ENV } from '../../config/env';
-import { publicDir } from '../../config/paths';
+import { buildDir, publicDir } from '../../config/paths';
 import { session as dbSession } from '../db';
 
 export default (app) => {
@@ -21,6 +21,7 @@ export default (app) => {
     app.use(gzip());
     // Secure your Express apps by setting various HTTP headers. Documentation: https://github.com/helmetjs/helmet
     app.use(helmet());
+    app.use(express.static(buildDir));
   } else {
     const compiler = webpack(webpackDevConfig);
     app.use(middleware(compiler));
