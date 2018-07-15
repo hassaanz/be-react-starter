@@ -2,13 +2,16 @@ import express from 'express';
 import passport from 'passport';
 import session from 'express-session';
 import bodyParser from 'body-parser';
-import path from 'path';
 import methodOverride from 'method-override';
 import gzip from 'compression';
 import helmet from 'helmet';
+import webpack from 'webpack';
+import middleware from 'webpack-dev-middleware';
+import webpackDevConfig from '../../webpack/webpack.dev.config';
 import unsupportedMessage from '../db/unsupportedMessage';
 import { sessionSecret } from '../../config/secrets';
 import { DB_TYPE, ENV } from '../../config/env';
+import { publicDir } from '../../config/paths';
 import { session as dbSession } from '../db';
 
 export default (app) => {
@@ -18,13 +21,16 @@ export default (app) => {
     app.use(gzip());
     // Secure your Express apps by setting various HTTP headers. Documentation: https://github.com/helmetjs/helmet
     app.use(helmet());
+  } else {
+    const compiler = webpack(webpackDevConfig);
+    app.use(middleware(compiler));
   }
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
   app.use(methodOverride());
 
-  app.use(express.static(path.join(process.cwd(), 'public')));
+  app.use(express.static(publicDir));
 
   // I am adding this here so that the Heroku deploy will work
   // Indicates the app is behind a front-facing proxy,
@@ -92,5 +98,6 @@ export default (app) => {
   app.use(passport.initialize());
   app.use(passport.session());
 
+  app.get('/health', (req, res) => res.send('1'));
   // app.use(flash());
 };
