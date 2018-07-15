@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "cross-env NODE_ENV=development nodemon",
-    "clean": "rimraf dist/* && touch dist/.gitkeep",
+    "clean": "rimraf dist/*",
     "server:dev": "node index.js",
     "webpack:dev": "webpack-dev-server --config webpack.dev.js --open",
     "server:prod": "cross-env NODE_ENV=production node index.js",
