@@ -3,18 +3,12 @@ import { Switch, Route } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import FourOhFour from './pages/404';
 import { WithNav } from './components/Nav';
+import Components from './components';
 
-const Home = () => (
-  <div>
-    Home
-  </div>
-);
-
-const About = () => (
-  <div>
-    About
-  </div>
-);
+const {
+  Home,
+  About,
+} = Components;
 
 const Routes = () => {
   return (
